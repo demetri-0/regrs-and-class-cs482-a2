@@ -1,3 +1,7 @@
+# CS 482 - Assignment 2
+# Author: Demetri Karras
+# File: karras2_regression.py
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -85,7 +89,6 @@ plt.tight_layout()
 plt.show()
 
 """ ******** Model Fitting ******** """
-
 print("\n")
 
 model = LinearRegression()
@@ -141,10 +144,7 @@ for e in epsilon_values:
             StandardScaler(),
             SVR(kernel="rbf", C=c, epsilon=e) 
         )
-        svr_model.fit(x_train, y_train)
-
-        epsilon_values = [0.2, 0.5, 1]
-        c_values = [1, 10, 100]        
+        svr_model.fit(x_train, y_train)    
 
         # consolidate metrics and display to user for comparison
         scores = cross_validate(svr_model, x, y, cv=5, scoring=("r2", "neg_root_mean_squared_error"), return_train_score=True)
